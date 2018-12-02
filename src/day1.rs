@@ -3,23 +3,16 @@ use std::collections::HashSet;
 
 #[aoc(day1, part1)]
 pub fn part1(input: &str) -> i32 {
-  input
-    .lines()
-    .map(|line| line.parse::<i32>().unwrap())
-    .sum()
+  numbers(input).sum()
 }
 
 #[aoc(day1, part2)]
 pub fn part2(input: &str) -> i32 {
   let mut set = HashSet::new();
   let mut result = 0;
-  let cycle = input
-    .lines()
-    .map(|line| line.parse::<i32>().unwrap())
-    .cycle();
 
   set.insert(result);
-  for num in cycle {
+  for num in numbers(input).cycle() {
     result += num;
 
     if set.contains(&result) {
@@ -30,6 +23,12 @@ pub fn part2(input: &str) -> i32 {
   }
 
   unreachable!();
+}
+
+fn numbers<'a>(input: &'a str) -> impl Iterator<Item=i32> + 'a + Clone {
+    input
+      .lines()
+      .map(|line| line.parse().unwrap())
 }
 
 #[cfg(test)]
