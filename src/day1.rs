@@ -12,23 +12,24 @@ pub fn part2(input: &str) -> i32 {
   let mut result = 0;
 
   set.insert(result);
-  for num in numbers(input).cycle() {
-    result += num;
+  let mut cycle = numbers(input).cycle();
+  loop {
+    if let Some(num) = cycle.next() {
+      result += num;
 
-    if set.contains(&result) {
-      return result;
-    } else {
-      set.insert(result);
-    }
+      if set.contains(&result) {
+        break result;
+      } else {
+        set.insert(result);
+      }
+    };
   }
-
-  unreachable!();
 }
 
 fn numbers<'a>(input: &'a str) -> impl Iterator<Item=i32> + 'a + Clone {
-    input
-      .lines()
-      .map(|line| line.parse().unwrap())
+  input
+    .lines()
+    .map(|line| line.parse().unwrap())
 }
 
 #[cfg(test)]
