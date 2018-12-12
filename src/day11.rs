@@ -85,7 +85,6 @@ mod tests {
 
   #[test]
   #[ignore]
-
   fn sample3() {
     let chunk = part2("18");
     assert_eq!((90,269), (chunk.x, chunk.y));
