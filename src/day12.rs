@@ -99,12 +99,9 @@ pub fn part2(input: &str) -> i64 {
 
   loop {
     let new_list = generation(&mut list, &rules);
-    let first_true_old = list.iter()
-      .skip_while(|pot| !pot.value);
-    let first_true_new = new_list.iter()
-      .skip_while(|pot| !pot.value);
-
-    let is_same = first_true_old.zip(first_true_new)
+    let is_same = list.iter()
+      .skip_while(|pot| !pot.value)
+      .zip(new_list.iter().skip_while(|pot| !pot.value))
       .all(|(a, b)| a.value == b.value);
 
     g += 1;
