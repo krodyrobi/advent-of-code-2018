@@ -46,7 +46,6 @@ pub fn generation(list: &mut VecDeque<Pot>, rules: &HashMap<Vec<bool>, bool>) ->
 fn read_input(input: &str) -> (VecDeque<Pot>, HashMap<Vec<bool>, bool>) {
   let mut lines = input.lines();
   let initial = lines.next().unwrap().split(" ").nth(2).unwrap();
-  let state_size = initial.len();
   let mut list: VecDeque<Pot> = VecDeque::new();
 
   for (i, c) in initial.chars().enumerate() {

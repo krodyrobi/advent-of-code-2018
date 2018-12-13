@@ -20,7 +20,10 @@ impl fmt::Display for Position {
 }
 
 fn read_input(input: &str) -> (Vec<Cart>, HashMap<Position, usize>) {
-  input.lines();
+  input.lines()
+    .enumerate(|index, line| {
+      line.chars()
+    })
 }
 
 #[aoc(day13, part1)]
